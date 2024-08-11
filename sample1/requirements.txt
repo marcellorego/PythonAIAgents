@@ -1,0 +1,8 @@
+python-dotenv==1.0.1
+openai==1.40.3
+Flask==3.0.3
+waitress==3.0.0
+slack-sdk==3.31.0
+slack-bolt==1.19.1
+
+#langchain==0.2.12
