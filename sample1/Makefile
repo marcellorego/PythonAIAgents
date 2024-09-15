@@ -15,11 +15,17 @@ help:
 	@echo '     make env			create application virtual environment'
 	@echo ''
 
+venv:
+	sudo apt install python3.10-venv
+
 env:
 	python3 -m venv $(APPLICATION_ENV)
 
 pip:
-	pip install --upgrade pip
+	$(APPLICATION_ENV)/bin/pip install -U pip setuptools
+
+poetry:
+	$(APPLICATION_ENV)/bin/pip install poetry
 
 act: 
 	source $(CURRENT_DIR)/$(APPLICATION_ENV)/bin/activate
