@@ -15,31 +15,24 @@ help:
 	@echo '     make env			create application virtual environment'
 	@echo ''
 
-venv:
+add-venv:
 	sudo apt install python3.10-venv
 
 env:
 	python3 -m venv $(APPLICATION_ENV)
 
-renv:
-	deactivate
-	rm -rf $(APPLICATION_ENV)
-
 pip:
 	$(APPLICATION_ENV)/bin/pip install -U pip setuptools
-
-poetry:
-	$(APPLICATION_ENV)/bin/pip install poetry
 
 act:
 	$(eval ENV_ACTIVATE := $(shell echo $(CURRENT_DIR)/$(APPLICATION_ENV)/bin/activate))
 	@echo $(ENV_ACTIVATE)
 
 dact:
-	@echo "deactivate"
+	@echo deactivate
 
 deps:
 	pip install -r $(CURRENT_DIR)/requirements.txt
 
 run:
-	python src/main.py
+	python main.py
