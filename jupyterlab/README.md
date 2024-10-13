@@ -1,0 +1,2 @@
+https://medium.com/@laquesisa/virtual-environment-in-jupyter-lab-8b3815ba9662
+https://medium.com/@claudia.nikel/how-to-setup-a-jupyter-notebook-in-vs-code-w-virtual-env-kernels-install-packages-884cf643375e
