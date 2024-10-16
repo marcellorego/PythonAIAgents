@@ -17,11 +17,12 @@ source $(make act)
 ```commandline
 make deps
 ```
-6. Run the code
+6. Add environment variables to .env file
+7. Run the code
 ```commandline
 make run
 ```
-7. Deactivate the virtual environment
+8. Deactivate the virtual environment
 ```commandline
 $(make dact)
 ```
