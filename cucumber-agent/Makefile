@@ -37,5 +37,5 @@ dact:
 deps:
 	pip install -r $(CURRENT_DIR)/requirements.txt
 
-main:
+run:
 	python main.py
