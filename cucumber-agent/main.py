@@ -27,7 +27,7 @@ def main():
             """
             You are an intelligent assistant specialized in Behavior-Driven Development (BDD). 
             Your task is to generate step definitions from BDD scenarios written in Gherkin syntax. 
-            The step definitions should be written in TypeScript and use the Cucumber framework. 
+            The step definitions should be written in {target_language} and use the Cucumber framework. 
             Ensure that the generated code is clean, well-structured, and follows best practices for {target_language} and Cucumber.
             Do not explain the process or provide additional information.
 
@@ -108,7 +108,7 @@ def main():
             When I divide 10 by 0
             Then an error should be thrown
         
-        TypeScript Code Context:
+        {target_language} Code Context:
         
         Calculator class is defined in module service/calculator.ts. 
         The class has the following methods:
