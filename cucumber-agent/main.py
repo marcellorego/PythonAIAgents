@@ -4,11 +4,16 @@ from typing import List
 from dotenv import load_dotenv, find_dotenv
 from langchain_core.messages import BaseMessage, SystemMessage, HumanMessage
 from langchain_openai import AzureChatOpenAI
+from langchain_ollama.llms import OllamaLLM
+from langchain_openai.chat_models.base import BaseChatOpenAI
+
+AzureOpenAI: str = "Azure"
+Ollama: str = "Ollama"
 
 # Load environment variables
 load_dotenv(find_dotenv())
 
-def main():
+def create_azure_chatbot() -> AzureChatOpenAI:
     AZURE_OPENAI_API_VERSION = os.getenv('AZURE_OPENAI_API_VERSION')
     AZURE_OPENAI_ENDPOINT = os.getenv('AZURE_OPENAI_ENDPOINT')
     AZURE_OPENAI_DEPLOYMENT = os.getenv('AZURE_OPENAI_DEPLOYMENT')
@@ -21,6 +26,27 @@ def main():
         timeout=120000,  # 2 minutes
         max_retries=2,
     )
+
+    return chatbot
+
+def create_ollama_chatbot() -> OllamaLLM:
+   chatbot: OllamaLLM = OllamaLLM(
+      base_url="http://localhost:11434", 
+      model="llama3.2", 
+      temperature=0.0)
+   return chatbot
+
+def create_chatbot() -> BaseChatOpenAI:
+    CHATBOT_MODEL = os.getenv('CHATBOT_MODEL')
+    if CHATBOT_MODEL == AzureOpenAI:
+      return create_azure_chatbot()
+    else:
+      return create_ollama_chatbot()
+    
+
+def main():
+    
+    chatbot: BaseChatOpenAI = create_chatbot() 
 
     messages: List[BaseMessage] = [
         SystemMessage(
@@ -141,7 +167,7 @@ def main():
     config = {"configurable": {"target_language": "TypeScript"}}
     ai_response: BaseMessage = chatbot.invoke(messages, config)
 
-    print(ai_response.content)
+    print(ai_response)
 
 if __name__ == "__main__":
     main()
