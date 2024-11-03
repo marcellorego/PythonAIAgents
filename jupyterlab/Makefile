@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 .DEFAULT_GOAL := help
-.PHONY: help home env
+.PHONY: help venv env renv act dact deps notebook
 
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 USER_ID:=$(shell id -u ${USER})
@@ -13,6 +13,11 @@ help:
 	@echo 'Makefile for '
 	@echo '     make help			show this information'
 	@echo '     make env			create application virtual environment'
+	@echo '     make renv			remove existing virtual environment'
+	@echo '     make act			enable virtual environment. e.g.: source $(make act)'
+	@echo '     make deps			install all required dependencies into virtual environment. See requirements.txt'
+	@echo '     make dact			disable virtual environment. e.g.: $(make dact)'
+	@echo '     make notebook		run jupyter notebook'
 	@echo ''
 
 venv:
